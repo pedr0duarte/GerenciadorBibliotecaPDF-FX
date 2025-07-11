@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaAdicionarEntradaController">
+   <children>
+      <Label fx:id="labelTitulo" layoutX="25.0" layoutY="14.0" text="Adicionar à Coleção: [Nome]">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="40.0" text="Selecione um PDF compatível (mesmo autor e tipo) para adicionar." />
+      <TableView fx:id="tabelaPdfs" layoutX="25.0" layoutY="70.0" prefHeight="260.0" prefWidth="450.0">
+        <columns>
+          <TableColumn fx:id="colunaTitulo" prefWidth="250.0" text="Título" />
+          <TableColumn fx:id="colunaAutores" prefWidth="200.0" text="Autores" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnAdicionar" layoutX="395.0" layoutY="345.0" onAction="#adicionarEntrada" text="Adicionar" />
+      <Button fx:id="btnFechar" layoutX="325.0" layoutY="345.0" onAction="#fecharJanela" text="Fechar" />
+   </children>
+</AnchorPane>
