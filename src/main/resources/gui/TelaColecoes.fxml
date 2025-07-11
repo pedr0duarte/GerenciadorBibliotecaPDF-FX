@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.TelaColecoesController">
+    <top>
+        <Label text="Gerenciar Coleções" BorderPane.alignment="CENTER" style="-fx-font-size: 18px;" />
+    </top>
+    <center>
+        <ListView fx:id="listaColecoes" />
+    </center>
+    <bottom>
+        <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="campoNomeColecao" promptText="Nome da nova coleção" />
+            <Button text="Criar" onAction="#criarColecao" />
+            <Button text="Remover" onAction="#removerColecao" />
+            <Button text="Voltar" onAction="#voltarMenu" />
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="gui.TelaRemoverPDFController" alignment="CENTER" spacing="10">
+    <Label text="Remover PDF" style="-fx-font-size: 18px;" />
+    <TextField fx:id="campoTituloRemover" promptText="Título do PDF a remover" />
+    <Button text="Remover" onAction="#removerPDF" />
+    <Button text="Voltar" onAction="#voltarMenu" />
+</VBox>

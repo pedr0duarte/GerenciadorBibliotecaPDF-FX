@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="gui.TelaMenuController">
+    <Label text="Menu Principal" style="-fx-font-size: 20px;" />
+    <Button text="Adicionar Livro" onAction="#abrirTelaLivro" />
+    <Button text="Listar Registros" onAction="#listarRegistros" />
+    <Button text="Criar Coleção" onAction="#abrirTelaColecao" />
+    <Button text="Exportar BibTeX" onAction="#exportarBibtex" />
+    <Button text="Sair" onAction="#sair" />
+</VBox>

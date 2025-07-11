@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.TelaAdicionarPDFController">
+    <children>
+        <VBox alignment="CENTER" spacing="10" layoutX="20" layoutY="20" prefWidth="400">
+            <Label text="Adicionar Arquivo PDF" style="-fx-font-size: 18px;" />
+            
+            <TextField fx:id="campoTitulo" promptText="Título" />
+            <TextField fx:id="campoAutor" promptText="Autor" />
+            <ComboBox fx:id="comboTipo" promptText="Tipo (Livro, Slide, Nota de Aula)" />
+            <TextField fx:id="campoCaminho" promptText="Caminho do Arquivo PDF" />
+            
+            <Button text="Selecionar Arquivo" onAction="#selecionarArquivo" />
+            <Button text="Adicionar" onAction="#adicionarPDF" />
+            <Button text="Voltar" onAction="#voltarMenu" />
+        </VBox>
+    </children>
+</AnchorPane>

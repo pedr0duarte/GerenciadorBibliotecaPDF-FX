@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="gui.TelaBuscarPDFController" alignment="CENTER" spacing="10">
+    <Label text="Buscar PDF" style="-fx-font-size: 18px;" />
+    <TextField fx:id="campoBusca" promptText="Digite o título para buscar" />
+    <Button text="Buscar" onAction="#buscarPDF" />
+    <TextArea fx:id="resultadoBusca" editable="false" wrapText="true" />
+    <Button text="Voltar" onAction="#voltarMenu" />
+</VBox>
