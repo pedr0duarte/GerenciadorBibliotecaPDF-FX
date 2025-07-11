@@ -14,6 +14,7 @@
             <Button text="Buscar PDF" onAction="#abrirTelaBuscar" />
             <Button text="Remover PDF" onAction="#abrirTelaRemover" />
             <Button text="Gerenciar Coleções" onAction="#abrirTelaColecoes" />
+            <Button layoutX="100" layoutY="250" onAction="#abrirTelaGerenciarBibliotecas" text="Gerenciar Bibliotecas" />
             
             <Separator />
             <Button text="Sair" onAction="#fecharAplicacao" />

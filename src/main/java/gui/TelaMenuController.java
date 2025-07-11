@@ -34,4 +34,9 @@ public class TelaMenuController {
     private void fecharAplicacao() {
         Platform.exit();
     }
+
+    @FXML
+    private void abrirTelaGerenciarBibliotecas() {
+        Navegador.cenaGerenciarBibliotecas();
+    }
 }

@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="gui.TelaMenuController">
-    <Label text="Menu Principal" style="-fx-font-size: 20px;" />
-    <Button text="Adicionar Livro" onAction="#abrirTelaLivro" />
-    <Button text="Listar Registros" onAction="#listarRegistros" />
-    <Button text="Criar Coleção" onAction="#abrirTelaColecao" />
-    <Button text="Exportar BibTeX" onAction="#exportarBibtex" />
-    <Button text="Sair" onAction="#sair" />
-</VBox>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.TelaMenuController">
+    <children>
+        <VBox alignment="CENTER" spacing="10" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <Label text="Gerenciador de Biblioteca de PDFs" style="-fx-font-size: 20px;" />
+            
+            <Button text="Adicionar PDF" onAction="#abrirTelaAdicionar" />
+            <Button text="Listar PDFs" onAction="#abrirTelaListar" />
+            <Button text="Buscar PDF" onAction="#abrirTelaBuscar" />
+            <Button text="Remover PDF" onAction="#abrirTelaRemover" />
+            <Button text="Gerenciar Coleções" onAction="#abrirTelaColecoes" />
+            <Button layoutX="100" layoutY="250" onAction="#abrirTelaGerenciarBibliotecas" text="Gerenciar Bibliotecas" />
+            
+            <Separator />
+            <Button text="Sair" onAction="#fecharAplicacao" />
+        </VBox>
+    </children>
+</AnchorPane>

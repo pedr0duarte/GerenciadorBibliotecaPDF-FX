@@ -104,4 +104,8 @@ public class Navegador {
             e.printStackTrace();
         }
     }
+
+    public static void cenaGerenciarBibliotecas() {
+        carregarCena("TelaGerenciarBibliotecas.fxml");
+    }
 }

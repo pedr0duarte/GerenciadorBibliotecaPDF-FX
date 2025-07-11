@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaGerenciarBibliotecasController">
+   <children>
+      <Label layoutX="184.0" layoutY="14.0" text="Gerenciamento de Bibliotecas">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="60.0" text="Biblioteca Ativa:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelBibliotecaAtiva" layoutX="130.0" layoutY="60.0" text="Nenhuma" />
+      <Label layoutX="30.0" layoutY="100.0" text="Bibliotecas Disponíveis:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ListView fx:id="listaBibliotecas" layoutX="30.0" layoutY="125.0" prefHeight="200.0" prefWidth="400.0" />
+      <Button layoutX="450.0" layoutY="125.0" onAction="#criarNova" prefHeight="30.0" prefWidth="120.0" text="Criar Nova..." />
+      <Button layoutX="450.0" layoutY="175.0" onAction="#alternarParaSelecionada" prefHeight="30.0" prefWidth="120.0" text="Alternar" />
+      <Button layoutX="450.0" layoutY="225.0" onAction="#deletarAtual" prefHeight="30.0" prefWidth="120.0" text="Deletar Atual" textFill="RED" />
+      <Button layoutX="504.0" layoutY="350.0" onAction="#voltarMenu" prefHeight="30.0" prefWidth="70.0" text="Voltar" />
+   </children>
+</AnchorPane>
