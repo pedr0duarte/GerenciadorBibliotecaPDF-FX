@@ -2,79 +2,86 @@
 📌 Descrição
 Este projeto é um sistema de gerenciamento de bibliotecas de arquivos PDF, agora com uma interface gráfica de usuário (GUI) completa desenvolvida com JavaFX. O sistema permite organizar documentos PDF em diferentes bibliotecas, além de criar e gerenciar coleções temáticas de documentos.
 
-A aplicação suporta a adição, listagem, busca e remoção de PDFs, tratando diferentes tipos de documentos como Livros, Slides e Notas de Aula. A persistência dos metadados é realizada em arquivos CSV, garantindo que os dados do usuário sejam mantidos entre as sessões.
+A aplicação suporta a adição, listagem, busca, edição e remoção de PDFs, tratando diferentes tipos de documentos como Livros, Slides e Notas de Aula. A persistência dos metadados é realizada em arquivos CSV, garantindo que os dados do usuário sejam mantidos entre as sessões.
 
 ✨ Funcionalidades da Interface Gráfica
-Menu Principal Intuitivo: Navegue facilmente entre as diferentes funcionalidades do sistema.
+Gerenciamento de Bibliotecas
 
-Gerenciamento de PDFs:
+Criar novas bibliotecas em qualquer diretório.
 
-Adicionar: Uma tela dedicada para adicionar novos PDFs (Livro, Slide, Nota de Aula), com seletor de arquivos.
+Alternar entre bibliotecas existentes.
 
-Listar: Visualize todos os PDFs da sua biblioteca em uma tabela organizada.
+Deletar bibliotecas inteiras, incluindo os arquivos físicos.
 
-Buscar: Encontre PDFs específicos por título.
+Gerenciamento de PDFs
 
-Remover: Remova registros de PDF da sua biblioteca.
+Adicionar novos documentos (Livros, Slides, Notas de Aula) com um seletor de arquivos.
 
-Gerenciamento de Coleções:
+Listar todos os PDFs da biblioteca ativa em uma tabela detalhada.
 
-Criar Coleção: Defina um nome, autor, limite e tipo para criar novas coleções.
+Editar os metadados de um PDF existente.
 
-Visualizar Coleções: Veja todas as suas coleções em uma tabela detalhada.
+Remover registros e seus arquivos correspondentes.
 
-Adicionar e Remover Entradas: Adicione PDFs da sua biblioteca a uma coleção ou remova-os através de janelas de diálogo interativas.
+Gerenciamento de Coleções
 
+Criar coleções personalizadas por tipo, autor e com limite de itens.
 
-Exportar para BibTeX: Exporte coleções de livros para um arquivo .bib com um clique. 
+Adicionar e remover PDFs em coleções através de janelas interativas.
 
+Exportar coleções de livros para o formato .bib (BibTeX).
 
-Compactar Coleção: Empacote todos os PDFs de uma coleção em um arquivo .zip para fácil compartilhamento. 
-
-📸 Telas da Aplicação
-(Sugestão: Adicione aqui capturas de tela da sua aplicação em funcionamento)
-
-(Tela de Coleções)
-
-(Tela de Visualização de Entradas)
+Compactar os arquivos de uma coleção em um arquivo .zip.
 
 🛠️ Tecnologias Utilizadas
 Java 17
 
-
-JavaFX 21 para a Interface Gráfica de Usuário 
+JavaFX 21 para a Interface Gráfica de Usuário
 
 Maven para gerenciamento de dependências e build do projeto
 
 🚀 Como Executar
-Para executar o projeto, você precisa ter o Java 17 (ou superior) e o Maven instalados em seu sistema.
+Pré-requisitos
+Java Development Kit (JDK) 17 ou superior.
 
-Clone o repositório para a sua máquina local.
+Apache Maven.
 
-Abra um terminal ou prompt de comando na pasta raiz do projeto (onde o arquivo pom.xml está localizado).
+Passos
+Clone o repositório para a sua máquina local:
 
-Execute o seguinte comando:
+Bash
+
+git clone https://github.com/pedr0duarte/Gerenciador-de-Biblioteca-PDF-com-GUI.git
+Navegue até a pasta raiz do projeto pelo terminal.
+
+Execute o seguinte comando Maven:
 
 Bash
 
 mvn clean javafx:run
-O Maven irá baixar as dependências e iniciar a aplicação JavaFX.
+A aplicação será iniciada.
+
+💾 Persistência de Dados
+A aplicação garante que nenhuma informação seja perdida entre as sessões:
+
+Metadados dos PDFs: Todas as informações sobre os arquivos são salvas em biblioteca_dados.csv.
+
+Coleções: As coleções criadas e suas entradas são armazenadas em colecoes.csv.
+
+Biblioteca Ativa: O caminho para a última biblioteca utilizada é mantido em biblioteca_path.txt, permitindo que o programa reabra no mesmo estado.
 
 📂 Estrutura do Projeto
-A estrutura de diretórios foi organizada para separar a lógica de negócio, a interface gráfica e os dados de persistência.
-
 GerenciadorBibliotecaFX/
 ├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   ├── gui/                # Controladores e classes da interface
-│   │   │   ├── gerenciador/        # Classes de lógica de negócio
-│   │   │   ├── modelos/            # Classes de modelo (POJO)
-│   │   │   ├── persistencia/       # Classes para salvar e carregar dados
-│   │   │   └── excecoes/           # Exceções customizadas
-│   │   └── resources/
-│   │       └── gui/                # Arquivos FXML que definem as telas
-│   ├── ...
+│   └── main/
+│       ├── java/
+│       │   ├── gui/                # Controladores e classes da interface
+│       │   ├── gerenciador/        # Classes de lógica de negócio
+│       │   ├── modelos/            # Classes de modelo (POJO)
+│       │   ├── persistencia/       # Classes para salvar e carregar dados
+│       │   └── excecoes/           # Exceções customizadas
+│       └── resources/
+│           └── gui/                # Arquivos FXML que definem as telas
 ├── biblioteca_dados.csv            # Armazena os metadados dos PDFs
 ├── biblioteca_path.txt             # Salva o caminho da última biblioteca usada
 ├── colecoes.csv                    # Armazena os dados das coleções
