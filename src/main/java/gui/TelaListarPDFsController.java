@@ -2,6 +2,7 @@ package gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.*;
 import modelos.ArquivoPDF;
 import gerenciador.GerenciadorBiblioteca;
@@ -22,10 +23,11 @@ public class TelaListarPDFsController {
     @FXML
     public void initialize() {
         colunaTitulo.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTitulo()));
-        colunaAutor.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAutor()));
-        colunaTipo.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getClass().getSimpleName()));
+        colunaAutor
+                .setCellValueFactory(data -> new SimpleStringProperty(String.join(", ", data.getValue().getAutores())));
+        colunaTipo.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTipo()));
 
-        ObservableList<ArquivoPDF> lista = FXCollections.observableArrayList(gerenciador.listarArquivos());
+        ObservableList<ArquivoPDF> lista = FXCollections.observableArrayList(gerenciador.listarRegistros());
         tabelaPDFs.setItems(lista);
     }
 

@@ -8,6 +8,8 @@ import modelos.*;
 import gerenciador.GerenciadorBiblioteca;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 public class TelaAdicionarPDFController {
 
@@ -43,18 +45,30 @@ public class TelaAdicionarPDFController {
         String autor = campoAutor.getText();
         String tipo = comboTipo.getValue();
         String caminho = campoCaminho.getText();
+        List<String> autores = Arrays.asList(autor.split(","));
 
-        ArquivoPDF pdf = switch (tipo) {
-            case "Livro" -> new Livro(titulo, autor, caminho);
-            case "Slide" -> new Slide(titulo, autor, caminho);
-            case "Nota de Aula" -> new NotaDeAula(titulo, autor, caminho);
-            default -> null;
-        };
+        ArquivoPDF pdf = null;
+        switch (tipo) {
+            case "Livro":
+                // Supondo que você tenha campos para subtitulo, area de conhecimento e ano
+                pdf = new Livro(autores, titulo, "Subtitulo Padrão", "Área Padrão", 2024, caminho);
+                break;
+            case "Slide":
+                pdf = new Slide(autores, titulo, "Disciplina Padrão", caminho);
+                break;
+            case "Nota de Aula":
+                pdf = new NotaDeAula(autores, titulo, "Subtitulo Padrão", "Disciplina Padrão", caminho);
+                break;
+        }
 
         if (pdf != null) {
-            gerenciador.adicionarArquivo(pdf);
-            mostrarAlerta("PDF adicionado com sucesso!");
-            limparCampos();
+            try {
+                gerenciador.adicionarArquivo(pdf);
+                mostrarAlerta("PDF adicionado com sucesso!");
+                limparCampos();
+            } catch (Exception e) {
+                mostrarAlerta("Erro ao adicionar PDF: " + e.getMessage());
+            }
         } else {
             mostrarAlerta("Selecione um tipo válido.");
         }
