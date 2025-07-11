@@ -221,4 +221,23 @@ public class GerenciadorBiblioteca {
         Path caminho = Paths.get(registro.getCaminhoArquivo());
         Files.deleteIfExists(caminho);
     }
+
+    public boolean editarRegistro(ArquivoPDF antigo, ArquivoPDF novo) throws IOException, Excecoes {
+        if (registros.contains(antigo)) {
+            // Se o autor mudou, o arquivo precisa ser movido
+            if (!antigo.getAutores().equals(novo.getAutores())) {
+                moverArquivoParaAutor(novo); // Move o arquivo para o novo diretório de autor
+                removerArquivoFisico(antigo); // Remove o arquivo do local antigo
+            }
+
+            // Remove o registro antigo e adiciona o novo
+            registros.remove(antigo);
+            registros.add(novo);
+
+            // Atualiza a persistência
+            Persistencia.atualizarRegistros(registros);
+            return true;
+        }
+        return false;
+    }
 }

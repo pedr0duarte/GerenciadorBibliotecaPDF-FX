@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="350.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaEditarPDFController">
+   <children>
+      <Label layoutX="157.0" layoutY="14.0" text="Editar PDF">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="70.0" text="Título:" />
+      <TextField fx:id="campoTitulo" layoutX="150.0" layoutY="66.0" prefWidth="270.0" />
+      <Label layoutX="30.0" layoutY="110.0" text="Autores (sep. por vírgula):" />
+      <TextField fx:id="campoAutores" layoutX="150.0" layoutY="106.0" prefWidth="270.0" />
+      
+      <Label fx:id="labelSubtitulo" layoutX="30.0" layoutY="150.0" text="Subtítulo:" />
+      <TextField fx:id="campoSubtitulo" layoutX="150.0" layoutY="146.0" prefWidth="270.0" />
+      <Label fx:id="labelDisciplina" layoutX="30.0" layoutY="190.0" text="Disciplina:" />
+      <TextField fx:id="campoDisciplina" layoutX="150.0" layoutY="186.0" prefWidth="270.0" />
+      <Label fx:id="labelArea" layoutX="30.0" layoutY="230.0" text="Área Conhecimento:" />
+      <TextField fx:id="campoArea" layoutX="150.0" layoutY="226.0" prefWidth="270.0" />
+      <Label fx:id="labelAno" layoutX="30.0" layoutY="270.0" text="Ano Publicação:" />
+      <TextField fx:id="campoAno" layoutX="150.0" layoutY="266.0" prefWidth="100.0" />
+      
+      <Button layoutX="360.0" layoutY="310.0" onAction="#salvar" text="Salvar" />
+      <Button layoutX="280.0" layoutY="310.0" onAction="#cancelar" text="Cancelar" />
+   </children>
+</AnchorPane>

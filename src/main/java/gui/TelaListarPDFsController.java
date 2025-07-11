@@ -35,4 +35,21 @@ public class TelaListarPDFsController {
     private void voltarMenu() {
         Navegador.cenaMenu();
     }
+
+    @FXML
+    private void editarPDF() {
+        ArquivoPDF selecionado = tabelaPDFs.getSelectionModel().getSelectedItem();
+        if (selecionado != null) {
+            boolean salvo = Navegador.abrirJanelaEdicao(selecionado);
+            if (salvo) {
+                // Atualiza a tabela se as alterações foram salvas
+                initialize();
+            }
+        } else {
+            // (Opcional) Mostrar um alerta se nada estiver selecionado
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Por favor, selecione um PDF na tabela para editar.");
+            alert.showAndWait();
+        }
+    }
 }

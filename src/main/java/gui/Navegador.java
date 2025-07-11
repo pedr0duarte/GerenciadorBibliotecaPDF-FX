@@ -108,4 +108,26 @@ public class Navegador {
     public static void cenaGerenciarBibliotecas() {
         carregarCena("TelaGerenciarBibliotecas.fxml");
     }
+
+    public static boolean abrirJanelaEdicao(ArquivoPDF pdf) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Navegador.class.getResource("/gui/TelaEditarPDF.fxml"));
+            Parent root = loader.load();
+
+            TelaEditarPDFController controller = loader.getController();
+            controller.setPdfParaEditar(pdf);
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Editar PDF");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(stage);
+            dialogStage.setScene(new Scene(root));
+            dialogStage.showAndWait();
+
+            return controller.foiSalvo(); // Retorna true se o usuário salvou, false se cancelou
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

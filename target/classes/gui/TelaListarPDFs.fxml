@@ -17,6 +17,7 @@
         </TableView>
     </center>
     <bottom>
+        <Button layoutX="450.0" layoutY="350.0" onAction="#editarPDF" text="Editar PDF Selecionado" />
         <Button text="Voltar" onAction="#voltarMenu" BorderPane.alignment="CENTER" />
     </bottom>
 </BorderPane>
