@@ -51,16 +51,10 @@ A **persistência dos metadados** é realizada em arquivos CSV, garantindo que o
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/pedr0duarte/GerenciadorBibliotecaPDF_FX.git
+git clone https://github.com/pedr0duarte/GerenciadorBibliotecaPDF-FX.git
 ```
 
-2. Acesse a pasta raiz do projeto:
-
-```bash
-cd GerenciadorBibliotecaPDF_FX
-```
-
-3. Execute o programa:
+2. Execute o programa:
 
 ```bash
 mvn clean javafx:run
@@ -83,7 +77,7 @@ A aplicação salva automaticamente os dados entre execuções:
 ## 📂 Estrutura do Projeto
 
 ```
-GerenciadorBibliotecaFX/
+GerenciadorBibliotecaPDF-FX/
 ├── src/
 │   └── main/
 │       ├── java/
