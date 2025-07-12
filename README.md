@@ -51,13 +51,13 @@ A **persistência dos metadados** é realizada em arquivos CSV, garantindo que o
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/pedr0duarte/Gerenciador-de-Biblioteca-PDF-com-GUI.git
+git clone https://github.com/pedr0duarte/GerenciadorBibliotecaPDF_FX.git
 ```
 
 2. Acesse a pasta raiz do projeto:
 
 ```bash
-cd Gerenciador-de-Biblioteca-PDF-com-GUI
+cd GerenciadorBibliotecaPDF_FX
 ```
 
 3. Execute o programa:
