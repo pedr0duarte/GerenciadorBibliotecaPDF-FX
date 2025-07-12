@@ -1,88 +1,110 @@
-📚 Gerenciador de Biblioteca PDF com JavaFX
-📌 Descrição
-Este projeto é um sistema de gerenciamento de bibliotecas de arquivos PDF, agora com uma interface gráfica de usuário (GUI) completa desenvolvida com JavaFX. O sistema permite organizar documentos PDF em diferentes bibliotecas, além de criar e gerenciar coleções temáticas de documentos.
+# 📚 Gerenciador de Biblioteca PDF com JavaFX
 
-A aplicação suporta a adição, listagem, busca e remoção de PDFs, tratando diferentes tipos de documentos como Livros, Slides e Notas de Aula. A persistência dos metadados é realizada em arquivos CSV, garantindo que os dados do usuário sejam mantidos entre as sessões.
+## 📌 Descrição
 
-✨ Funcionalidades da Interface Gráfica
-Menu Principal Intuitivo: Navegue facilmente entre as diferentes funcionalidades do sistema.
+Este projeto é um sistema de gerenciamento de bibliotecas de arquivos PDF, agora com uma interface gráfica de usuário (GUI) completa desenvolvida com **JavaFX**.  
+O sistema permite organizar documentos PDF em diferentes bibliotecas, além de criar e gerenciar coleções temáticas de documentos.
 
-Gerenciamento de PDFs:
+A aplicação suporta a **adição, listagem, busca, edição e remoção de PDFs**, tratando diferentes tipos de documentos como **Livros, Slides e Notas de Aula**.  
+A **persistência dos metadados** é realizada em arquivos CSV, garantindo que os dados do usuário sejam mantidos entre as sessões.
 
-Adicionar: Uma tela dedicada para adicionar novos PDFs (Livro, Slide, Nota de Aula), com seletor de arquivos.
+---
 
-Listar: Visualize todos os PDFs da sua biblioteca em uma tabela organizada.
+## ✨ Funcionalidades da Interface Gráfica
 
-Buscar: Encontre PDFs específicos por título.
+### 📁 Gerenciamento de Bibliotecas
+- Criar novas bibliotecas em qualquer diretório
+- Alternar entre bibliotecas existentes
+- Deletar bibliotecas inteiras, incluindo os arquivos físicos
 
-Remover: Remova registros de PDF da sua biblioteca.
+### 📄 Gerenciamento de PDFs
+- Adicionar novos documentos (Livros, Slides, Notas de Aula) com seletor de arquivos
+- Listar todos os PDFs da biblioteca ativa em uma tabela detalhada
+- Editar os metadados de um PDF existente
+- Remover registros e seus arquivos correspondentes
 
-Gerenciamento de Coleções:
+### 📦 Gerenciamento de Coleções
+- Criar coleções personalizadas por tipo, autor e com limite de itens
+- Adicionar e remover PDFs em coleções através de janelas interativas
+- Exportar coleções de livros para o formato `.bib` (BibTeX)
+- Compactar os arquivos de uma coleção em um `.zip`
 
-Criar Coleção: Defina um nome, autor, limite e tipo para criar novas coleções.
+---
 
-Visualizar Coleções: Veja todas as suas coleções em uma tabela detalhada.
+## 🛠️ Tecnologias Utilizadas
 
-Adicionar e Remover Entradas: Adicione PDFs da sua biblioteca a uma coleção ou remova-os através de janelas de diálogo interativas.
+- Java 17  
+- JavaFX 21  
+- Maven (build e dependências)
 
+---
 
-Exportar para BibTeX: Exporte coleções de livros para um arquivo .bib com um clique. 
+## 🚀 Como Executar
 
+### ✅ Pré-requisitos
 
-Compactar Coleção: Empacote todos os PDFs de uma coleção em um arquivo .zip para fácil compartilhamento. 
+- Java Development Kit (JDK) 17 ou superior
+- Apache Maven instalado
 
-📸 Telas da Aplicação
-(Sugestão: Adicione aqui capturas de tela da sua aplicação em funcionamento)
+### ▶️ Passos
 
-(Tela de Coleções)
+1. Clone o repositório:
 
-(Tela de Visualização de Entradas)
+```bash
+git clone https://github.com/pedr0duarte/Gerenciador-de-Biblioteca-PDF-com-GUI.git
+```
 
-🛠️ Tecnologias Utilizadas
-Java 17
+2. Acesse a pasta raiz do projeto:
 
+```bash
+cd Gerenciador-de-Biblioteca-PDF-com-GUI
+```
 
-JavaFX 21 para a Interface Gráfica de Usuário 
+3. Execute o programa:
 
-Maven para gerenciamento de dependências e build do projeto
-
-🚀 Como Executar
-Para executar o projeto, você precisa ter o Java 17 (ou superior) e o Maven instalados em seu sistema.
-
-Clone o repositório para a sua máquina local.
-
-Abra um terminal ou prompt de comando na pasta raiz do projeto (onde o arquivo pom.xml está localizado).
-
-Execute o seguinte comando:
-
-Bash
-
+```bash
 mvn clean javafx:run
-O Maven irá baixar as dependências e iniciar a aplicação JavaFX.
+```
 
-📂 Estrutura do Projeto
-A estrutura de diretórios foi organizada para separar a lógica de negócio, a interface gráfica e os dados de persistência.
+---
 
+## 💾 Persistência de Dados
+
+A aplicação salva automaticamente os dados entre execuções:
+
+| Tipo de Dado        | Arquivo CSV                  |
+|---------------------|------------------------------|
+| Metadados dos PDFs  | `biblioteca_dados.csv`       |
+| Coleções criadas    | `colecoes.csv`               |
+| Caminho da biblioteca ativa | `biblioteca_path.txt` |
+
+---
+
+## 📂 Estrutura do Projeto
+
+```
 GerenciadorBibliotecaFX/
 ├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   ├── gui/                # Controladores e classes da interface
-│   │   │   ├── gerenciador/        # Classes de lógica de negócio
-│   │   │   ├── modelos/            # Classes de modelo (POJO)
-│   │   │   ├── persistencia/       # Classes para salvar e carregar dados
-│   │   │   └── excecoes/           # Exceções customizadas
-│   │   └── resources/
-│   │       └── gui/                # Arquivos FXML que definem as telas
-│   ├── ...
-├── biblioteca_dados.csv            # Armazena os metadados dos PDFs
-├── biblioteca_path.txt             # Salva o caminho da última biblioteca usada
-├── colecoes.csv                    # Armazena os dados das coleções
-├── pom.xml                         # Arquivo de configuração do Maven
+│   └── main/
+│       ├── java/
+│       │   ├── gui/                # Controladores e classes da interface
+│       │   ├── gerenciador/        # Lógica de negócio
+│       │   ├── modelos/            # Representação dos dados (POJO)
+│       │   ├── persistencia/       # Salvamento e carregamento de dados
+│       │   └── excecoes/           # Exceções customizadas
+│       └── resources/
+│           └── gui/                # Arquivos .fxml das telas
+├── biblioteca_dados.csv            # Metadados dos PDFs
+├── biblioteca_path.txt             # Última biblioteca usada
+├── colecoes.csv                    # Dados das coleções
+├── pom.xml                         # Configuração do Maven
 └── README.md
-👨‍💻 Autor
-Aluno: PEDRO HENRIQUE DUARTE DE OLIVEIRA - 20190003968
+```
 
-Docente: VALDIGLEIS DA SILVA COSTA
+---
 
-Disciplina: DIM0116 - LINGUAGEM DE PROGRAMAÇÃO II - T02 (2025.1)
+## 👨‍💻 Autor
+
+- **Aluno:** PEDRO HENRIQUE DUARTE DE OLIVEIRA – 20190003968  
+- **Docente:** VALDIGLEIS DA SILVA COSTA  
+- **Disciplina:** DIM0116 - LINGUAGEM DE PROGRAMAÇÃO II - T02 (2025.1)

@@ -6,27 +6,93 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import modelos.*;
 import gerenciador.GerenciadorBiblioteca;
+import excecoes.Excecoes;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 public class TelaAdicionarPDFController {
 
-    @FXML
-    private TextField campoTitulo;
-    @FXML
-    private TextField campoAutor;
+    // Campos Comuns
     @FXML
     private ComboBox<String> comboTipo;
     @FXML
+    private TextField campoTitulo;
+    @FXML
+    private TextField campoAutores;
+    @FXML
     private TextField campoCaminho;
 
-    private GerenciadorBiblioteca gerenciador = GerenciadorBiblioteca.getInstancia();
+    // Campos Específicos
+    @FXML
+    private Label labelSubtitulo;
+    @FXML
+    private TextField campoSubtitulo;
+    @FXML
+    private Label labelDisciplina;
+    @FXML
+    private TextField campoDisciplina;
+    @FXML
+    private Label labelArea;
+    @FXML
+    private TextField campoArea;
+    @FXML
+    private Label labelAno;
+    @FXML
+    private TextField campoAno;
+
+    private final GerenciadorBiblioteca gerenciador = GerenciadorBiblioteca.getInstancia();
 
     @FXML
     public void initialize() {
-        comboTipo.getItems().addAll("Livro", "Slide", "Nota de Aula");
+        // Popula o ComboBox
+        comboTipo.getItems().addAll("Livro", "Nota de Aula", "Slide");
+
+        // Adiciona um listener para mostrar/esconder campos
+        comboTipo.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> toggleCampos(newValue));
+
+        // Inicia com todos os campos específicos escondidos
+        toggleCampos(null);
+    }
+
+    private void toggleCampos(String tipo) {
+        // Esconde todos por padrão
+        labelSubtitulo.setVisible(false);
+        campoSubtitulo.setVisible(false);
+        labelDisciplina.setVisible(false);
+        campoDisciplina.setVisible(false);
+        labelArea.setVisible(false);
+        campoArea.setVisible(false);
+        labelAno.setVisible(false);
+        campoAno.setVisible(false);
+
+        if (tipo == null)
+            return;
+
+        // Mostra os campos com base no tipo selecionado
+        switch (tipo) {
+            case "Livro":
+                labelSubtitulo.setVisible(true);
+                campoSubtitulo.setVisible(true);
+                labelArea.setVisible(true);
+                campoArea.setVisible(true);
+                labelAno.setVisible(true);
+                campoAno.setVisible(true);
+                break;
+            case "Nota de Aula":
+                labelSubtitulo.setVisible(true);
+                campoSubtitulo.setVisible(true);
+                labelDisciplina.setVisible(true);
+                campoDisciplina.setVisible(true);
+                break;
+            case "Slide":
+                labelDisciplina.setVisible(true);
+                campoDisciplina.setVisible(true);
+                break;
+        }
     }
 
     @FXML
@@ -41,36 +107,45 @@ public class TelaAdicionarPDFController {
 
     @FXML
     private void adicionarPDF() {
-        String titulo = campoTitulo.getText();
-        String autor = campoAutor.getText();
         String tipo = comboTipo.getValue();
-        String caminho = campoCaminho.getText();
-        List<String> autores = Arrays.asList(autor.split(","));
-
-        ArquivoPDF pdf = null;
-        switch (tipo) {
-            case "Livro":
-                // Supondo que você tenha campos para subtitulo, area de conhecimento e ano
-                pdf = new Livro(autores, titulo, "Subtitulo Padrão", "Área Padrão", 2024, caminho);
-                break;
-            case "Slide":
-                pdf = new Slide(autores, titulo, "Disciplina Padrão", caminho);
-                break;
-            case "Nota de Aula":
-                pdf = new NotaDeAula(autores, titulo, "Subtitulo Padrão", "Disciplina Padrão", caminho);
-                break;
+        if (tipo == null) {
+            mostrarAlerta("Erro", "Por favor, selecione um tipo de documento.");
+            return;
         }
 
-        if (pdf != null) {
-            try {
-                gerenciador.adicionarArquivo(pdf);
-                mostrarAlerta("PDF adicionado com sucesso!");
-                limparCampos();
-            } catch (Exception e) {
-                mostrarAlerta("Erro ao adicionar PDF: " + e.getMessage());
+        try {
+            // Coleta os dados dos campos
+            String titulo = campoTitulo.getText();
+            List<String> autores = Arrays.asList(campoAutores.getText().split(",\\s*"));
+            String caminho = campoCaminho.getText();
+
+            ArquivoPDF pdf = null;
+            // Cria o objeto correto com base no tipo
+            switch (tipo) {
+                case "Livro":
+                    pdf = new Livro(autores, titulo, campoSubtitulo.getText(), campoArea.getText(),
+                            Integer.parseInt(campoAno.getText()), caminho);
+                    break;
+                case "Nota de Aula":
+                    pdf = new NotaDeAula(autores, titulo, campoSubtitulo.getText(), campoDisciplina.getText(), caminho);
+                    break;
+                case "Slide":
+                    pdf = new Slide(autores, titulo, campoDisciplina.getText(), caminho);
+                    break;
             }
-        } else {
-            mostrarAlerta("Selecione um tipo válido.");
+
+            if (pdf != null) {
+                gerenciador.adicionarArquivo(pdf);
+                mostrarAlerta("Sucesso", "PDF adicionado com sucesso!");
+                limparCampos();
+            }
+        } catch (NumberFormatException e) {
+            mostrarAlerta("Erro de Formato", "O ano de publicação deve ser um número válido.");
+        } catch (IOException | Excecoes e) {
+            mostrarAlerta("Erro", "Não foi possível adicionar o PDF: " + e.getMessage());
+        } catch (Exception e) {
+            mostrarAlerta("Erro",
+                    "Ocorreu um erro inesperado. Verifique se todos os campos obrigatórios estão preenchidos.");
         }
     }
 
@@ -80,14 +155,20 @@ public class TelaAdicionarPDFController {
     }
 
     private void limparCampos() {
-        campoTitulo.clear();
-        campoAutor.clear();
-        campoCaminho.clear();
         comboTipo.getSelectionModel().clearSelection();
+        campoTitulo.clear();
+        campoAutores.clear();
+        campoCaminho.clear();
+        campoSubtitulo.clear();
+        campoDisciplina.clear();
+        campoArea.clear();
+        campoAno.clear();
     }
 
-    private void mostrarAlerta(String msg) {
+    private void mostrarAlerta(String titulo, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
     }

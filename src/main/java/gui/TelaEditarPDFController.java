@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelos.*;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
